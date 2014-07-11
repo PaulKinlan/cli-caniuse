@@ -27,13 +27,15 @@
 
     <!-- build:css styles/components/main.min.css -->
     <link rel="stylesheet" href="styles/h5bp.css">
-    <link rel="stylesheet" href="styles/components/components.css">
+    <!--<link rel="stylesheet" href="styles/components/components.css">-->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500|Source+Code+Pro:400,700">
   </head>
   <body>
-    <header class="app-bar promote-layer">
-      <div class="app-bar-container">
+    <header class="app-bar promote-layer paper-toolbar paper-shadow">
+      <div class="app-bar-container paper-toolbar">
         <button class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
         <h1 class="logo">Web Starter Kit</h1>
         <section class="app-bar-actions">
@@ -52,6 +54,7 @@
     </nav>
 
     <main>
+      <div id="overlay"></div>
       <h1 id="hello">Hello!</h1>
       <p>Welcome to Web Starter Kit.</p>
 

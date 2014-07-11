@@ -17,7 +17,7 @@ body {
 
 body {
   position: relative;
-  font-family: 'Roboto Condensed', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'RobotoDraft';
   font-weight: 300;
   background-color: #FFFFFF;
   box-sizing: border-box;
@@ -44,7 +44,7 @@ body.open {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  height: 60px;
+  height: 64px;
   position: relative;
   -webkit-flex-direction: row;
       -ms-flex-direction: row;
@@ -53,24 +53,33 @@ body.open {
 }
 
 .app-bar.open,
-.app-bar.open ~ main {
+.app-bar.open ~ main {/*
   -webkit-transform: translate(250px, 0);
-          transform: translate(250px, 0);
+          transform: translate(250px, 0);*/
+}
+
+body.open #overlay {
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+background-color: rgba(0, 0, 0, 0.3);
+transition: opacity ease-in-out 0.38s, visibility ease-in-out 0.38s;
 }
 
 .app-bar .logo {
   -webkit-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  font-size: 2em;
-  line-height: 60px;
+  font-size: 1.3em;
   margin: 0 16px;
   padding: 0;
   color: #fefefe;
   float: none;
   max-width: none;
-  font-weight: 300;
-  line-height: 60px;
+  font-weight: 400;
+  line-height: 64px;
 }
 
 .app-bar .logo a {
@@ -90,8 +99,8 @@ body.open {
 }
 
 .app-bar button {
-  width: 60px;
-  height: 60px;
+  width: 64px;
+  height: 64px;
   background-image: none;
   background-color: transparent;
   border: none;
@@ -102,8 +111,8 @@ body.open {
 }
 
 .app-bar button img {
-  width: 60px;
-  height: 60px;
+  width: 64px;
+  height: 64px;
 }
 
 .app-bar button:hover {
@@ -148,8 +157,8 @@ button.menu img {
   bottom: 0;
   width: 250px;
   height: 100%;
-  background-color: #3367D6;
-  color: #fefefe;
+  background-color: #fff;
+  color: #fff;
   -webkit-transform: translate(-250px, 0);
           transform: translate(-250px, 0);
   overflow-y: auto;
@@ -173,8 +182,11 @@ button.menu img {
 }
 
 .navdrawer-container h4 {
-  background-color: white;
-  color: #3367D6;
+  background-color: #FF4081;
+  color: white;
+  font-size: 1.3em;
+  font-weight: 400;
+  margin: 0;
 }
 
 .navdrawer-container ul {
@@ -186,7 +198,7 @@ button.menu img {
 .navdrawer-container ul li a {
   display: block;
   text-decoration: none;
-  color: white;
+  color: black;
   -webkit-transition: background-color 0.2s ease-out;
           transition: background-color 0.2s ease-out;
   white-space: nowrap;
@@ -237,9 +249,9 @@ main {
 
   .app-bar-container {
     display: block;
-    height: 130px;
+    height: 256px;
     max-width: 864px;
-    padding: 0 16px;
+    padding: 115px 16px 0;
     box-sizing: border-box;
     background-color: #4285f4;
   }
@@ -248,8 +260,8 @@ main {
     float: left;
     margin: 0;
     padding: 0;
-    line-height: 130px;
-    font-size: 46px;
+    line-height: 1.5;
+    font-size: 56px;
   }
 
   .app-bar-actions {
@@ -273,6 +285,7 @@ main {
     margin-top: 130px;
   }
 
+
   .navdrawer-container {
     position: relative;
     width: 100%;
@@ -283,6 +296,13 @@ main {
     -webkit-transition: none;
             transition: none;
     overflow-y: auto;
+    background-color: #303F9F;
+
+  }
+
+  /*second*/
+  .navdrawer-container ul li a {
+    color: #C5CAE9;
   }
 
   .navdrawer-container h4 {
@@ -320,6 +340,7 @@ main {
   }
 }
 
+/*
 @font-face {
   font-family: 'Roboto Condensed';
   font-style: normal;
@@ -366,4 +387,69 @@ main {
   font-weight: 700;
   src: url(/fonts/RobotoCondensed-BoldItalic.eot);
   src: local('Roboto Condensed Bold Italic'), local('RobotoCondensed-BoldItalic'), url(/fonts/RobotoCondensed-BoldItalic.eot) format('embedded-opentype'), url(/fonts/RobotoCondensed-BoldItalic.woff) format('woff');
+}
+*/
+
+/**
+  Material design styling
+**/
+
+.paper-toolbar {
+  color: #fff;
+  background: #3F51B5;
+}
+
+.paper-icon {
+  fill: #C5CAE9;
+  transition: fill 0.2s;
+}
+
+.paper-sidebar {
+  background: #FF4081;
+  color: white;
+  fill: white;
+}
+
+.paper-shadow {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.paper-sidebar-subtitle {
+  background: #DD2266;
+  color: white;
+}
+
+.paper-button {
+  background: #efefef;
+  display: block;
+  margin: 10px;
+  text-align: center;
+  font: inherit;
+  text-transform: uppercase;
+  outline: none;
+  border-radius: 3px;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 400;
+  color: #3F51B5;
+}
+
+h1 {
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 40px;
+  margin-bottom: 30px;
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: #7986CB;
+}
+
+a:visited {
+
 }
