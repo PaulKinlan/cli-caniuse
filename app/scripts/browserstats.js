@@ -157,6 +157,32 @@ var BrowserStats = (function() {
     return output;
   }
 
+  var union = function() {
+    // Return all the items in A that are not in B
+    var itemCount = arguments.length;
+    var output = {};    
+
+    // Get the list of items in the first list
+    var setA = Object.keys(arguments[0]);  // universal set.
+    var setB = Object.keys(arguments[1]);
+
+    var all = [];
+
+    // Add all of set A to the list.
+    for(var k = 0; k < setA.length; k++) {
+      all[setA[k]] = arguments[0][setA[k]];
+    }
+
+    // Add setB where it is not in SetA
+    for(var k = 0; k < setB.length; k++) {
+      var idx = setA.indexOf(setB[k]);
+      if(idx == -1)
+        all[setB[k]] = arguments[1][setB[k]];
+    }
+     
+    return all;
+  }
+
   var intersection = function() {
     var itemCount = arguments.length;
     var output = {};    
@@ -188,6 +214,7 @@ var BrowserStats = (function() {
     data: _data,
 	  load: load,
     eras: eras,
+    union: union,
     difference: difference,
     intersection: intersection,
 	  browsers: function(type) {

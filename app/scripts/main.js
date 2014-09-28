@@ -53,12 +53,16 @@
     BrowserStats.load(deviceType, function(data) {
 
       // Era work
-      var today = BrowserStats.eras([0]);
       var soon = BrowserStats.eras([3,2,1])
+      var today = BrowserStats.eras([0]);
+      var last_version = BrowserStats.eras([-1]);
+      var last_last_version = BrowserStats.eras([-2]);
       var comming_soon = BrowserStats.difference(soon, today);
 
 
-      var features_in_two = BrowserStats.intersection(data.browsers_features["ie"]["11"], data.browsers_features["chrome"]["38"]);
+      var features_in_two = BrowserStats.difference(data.browsers_features["chrome"]["38"], data.browsers_features["chrome"]["34"]);
+     
+
       var not_in_ie = BrowserStats.difference(data.browsers_features["chrome"]["38"], data.browsers_features["ie"]["11"]);
       var not_in_chrome = BrowserStats.difference(data.browsers_features["ie"]["11"], data.browsers_features["chrome"]["38"]);
 
