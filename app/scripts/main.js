@@ -47,4 +47,28 @@
       closeMenu();
     }
   });
+
+  window.addEventListener("load", function() {
+    var deviceType = "all";
+    BrowserStats.load(deviceType, function(data) {
+
+      // Era work
+      var today = BrowserStats.eras([0]);
+      var soon = BrowserStats.eras([3,2,1])
+      var comming_soon = BrowserStats.difference(soon, today);
+
+
+      var features_in_two = BrowserStats.intersection(data.browsers_features["ie"]["11"], data.browsers_features["chrome"]["38"]);
+      var not_in_ie = BrowserStats.difference(data.browsers_features["chrome"]["38"], data.browsers_features["ie"]["11"]);
+      var not_in_chrome = BrowserStats.difference(data.browsers_features["ie"]["11"], data.browsers_features["chrome"]["38"]);
+
+      var not_in_chrome_and = BrowserStats.difference(data.browsers_features["chrome"]["37"], data.browsers_features["and_chr"]["37"]);
+
+
+     // var not_in_ie8 = BrowserStats.difference(data.browsers_features["ie"]["9"], data.browsers_features["ie"]["8"]);
+      var new_features1 = BrowserStats.difference(data.browsers_features["ie"]["9"], data.browsers_features["ie"]["8"]);
+      var new_features = BrowserStats.difference(data.browsers_features["ie"]["11"], data.browsers_features["ie"]["10"]);
+      var features_in_both = BrowserStats.intersection(data.browsers_features["ie"]["11"], data.browsers_features["ie"]["10"]);
+    });
+  });
 })();
