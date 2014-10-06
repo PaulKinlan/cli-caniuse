@@ -48,31 +48,36 @@
     }
   });
 
-  window.addEventListener("load", function() {
-    var deviceType = "all";
-    BrowserStats.load(deviceType, function(data) {
+  window.addEventListener('load', function() {
+    var deviceType = 'all';
+    var stats = new BrowserStats();
+
+    stats.load(deviceType, function(data) {
+
+      var allFeatures = this.getFeatures();
 
       // Era work
-      var soon = BrowserStats.eras([3,2,1])
-      var today = BrowserStats.eras([0]);
-      var last_version = BrowserStats.eras([-1]);
-      var last_last_version = BrowserStats.eras([-2]);
-      var comming_soon = BrowserStats.difference(soon, today);
+      var soon = this.getEras([3,2,1])
+      var today = this.getEras([0]);
+      var last_version = this.getEras([-1]);
+      var last_last_version = this.getEras([-2]);
+
+      var commingSoon = __.difference(soon, today);
 
 
-      var features_in_two = BrowserStats.difference(data.browsers_features["chrome"]["38"], data.browsers_features["chrome"]["34"]);
+      var featuresInTwo = __.difference(allFeatures.chrome['38'], allFeatures.chrome['34']);
      
 
-      var not_in_ie = BrowserStats.difference(data.browsers_features["chrome"]["38"], data.browsers_features["ie"]["11"]);
-      var not_in_chrome = BrowserStats.difference(data.browsers_features["ie"]["11"], data.browsers_features["chrome"]["38"]);
+      var not_in_ie = __.difference(allFeatures.chrome['38'], allFeatures.ie['11']);
+      var not_in_chrome = __.difference(allFeatures.ie['11'], allFeatures.chrome['38']);
 
-      var not_in_chrome_and = BrowserStats.difference(data.browsers_features["chrome"]["37"], data.browsers_features["and_chr"]["37"]);
+      var not_in_chrome_and = __.difference(allFeatures.chrome['37'], allFeatures.and_chr['37']);
 
 
-     // var not_in_ie8 = BrowserStats.difference(data.browsers_features["ie"]["9"], data.browsers_features["ie"]["8"]);
-      var new_features1 = BrowserStats.difference(data.browsers_features["ie"]["9"], data.browsers_features["ie"]["8"]);
-      var new_features = BrowserStats.difference(data.browsers_features["ie"]["11"], data.browsers_features["ie"]["10"]);
-      var features_in_both = BrowserStats.intersection(data.browsers_features["ie"]["11"], data.browsers_features["ie"]["10"]);
-    });
+      var not_in_ie8 = __.difference(allFeatures.ie['9'], allFeatures.ie['8']);
+      var new_features1 = __.difference(allFeatures.ie['9'], allFeatures.ie['8']);
+      var new_features = __.difference(allFeatures.ie['11'], allFeatures.ie['10']);
+      var features_in_both = __.intersection(allFeatures.ie['11'], allFeatures.ie['10']);
+    }.bind(stats));
   });
 })();
