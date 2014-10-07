@@ -1,0 +1,28 @@
+ <!-- build:js scripts/container.min.js -->
+<script src="scripts/bower_components/jsrepl-build/jsrepl.js" id="jsrepl-script"></script>
+<!-- endbuild -->
+<script>
+var jsrepl = new JSREPL({  
+  input: function() {  },
+  result: function(result) { 
+    window.parent.postMessage(result, document.location.origin);
+  },
+  output: function(e) { console.log(e); },
+  error: function(error) { 
+    window.parent.postMessage(error, document.location.origin);
+  }
+});  
+
+jsrepl.loadLanguage('javascript', function () {    
+  console.log("language loaded");
+  jsrepl.eval("importScripts('/scripts/browserstats.js');");
+  jsrepl.eval("stats = new BrowserStats();");
+  jsrepl.eval("stats.load('all', function() {});");
+});
+
+var receiveMessage = function(e) {
+  jsrepl.eval(e.data);  
+};
+
+window.addEventListener("message", receiveMessage, false);
+</script>

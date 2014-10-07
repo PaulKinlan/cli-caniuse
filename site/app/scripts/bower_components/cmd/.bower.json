@@ -1,0 +1,32 @@
+{
+  "name": "cmd",
+  "version": "1.0.2",
+  "homepage": "https://github.com/mrchimp/cmd",
+  "authors": [
+    "mrchimp <chimpytk@gmail.com>"
+  ],
+  "description": "HTML5 command line terminal",
+  "main": "src/js/Cmd.js",
+  "keywords": [
+    "terminal",
+    "cmd",
+    "command-line"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "jquery": ">1.0"
+  },
+  "_release": "1.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.2",
+    "commit": "fe35342155ea847dc25e567f17d9cf0a4746a46f"
+  },
+  "_source": "git://github.com/mrchimp/cmd.git",
+  "_target": "~1.0.2",
+  "_originalSource": "cmd",
+  "_direct": true
+}

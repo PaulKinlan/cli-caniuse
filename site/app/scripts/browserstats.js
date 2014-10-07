@@ -101,10 +101,15 @@ var BrowserStats = function() {
 
   var load = function(type, callback) {
     callback = callback || function() {};
-    $.get('data/data.json').success(function(data) { 
-      _data = data; 
-      parse(type, data, callback); 
-    });
+    var xhr = new XMLHttpRequest();
+  
+    xhr.onload = function() { 
+      _data = JSON.parse(xhr.response); 
+      parse(type, _data, callback); 
+    };
+
+    xhr.open('GET', '/data/data.json');
+    xhr.send();
   };
 
 
@@ -117,7 +122,7 @@ var BrowserStats = function() {
     // Return only features... for now.
     var agentVersions = {};
     var agentsFilter = {};
-    var finalFeatures = [];
+    var finalFeatures = {};
 
     // We will only get features that are available in an era.
     // Era 3 = far future

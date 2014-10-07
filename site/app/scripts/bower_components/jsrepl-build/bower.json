@@ -1,0 +1,25 @@
+{
+  "name": "jsREPL Build",
+  "version": "0.1.0",
+  "homepage": "https://github.com/cansin/jsrepl-build",
+  "authors": [
+    "Cansin Yildiz <cansinyildiz@gmail.com>"
+  ],
+  "description": "Pre-baked jsREPL library, ready to be used as a bower package.",
+  "main": "jsrepl.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "replit",
+    "jsrepl"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

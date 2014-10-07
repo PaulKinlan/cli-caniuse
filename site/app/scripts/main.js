@@ -26,6 +26,9 @@
   var appbarElement = querySelector('.app-bar');
   var menuBtn = querySelector('.menu');
   var main = querySelector('main');
+  var querybar = querySelector('#querybar');
+  var container = querySelector('#container');
+  var stats;
 
   function closeMenu() {
     body.classList.remove('open');
@@ -48,9 +51,46 @@
     }
   });
 
+
+  var currentCmd;
+  var currentInput;
+
+  var receiveMessage = function(e) {
+    
+    var output = e.data;
+
+    if(currentCmd) {
+      currentCmd.handleResponse({
+        cmd_in: currentInput,
+        cmd_out: output
+      });
+    }
+    else {
+      statsConsole.appendOutput(output);
+    }
+  };
+
+  var queryProcessor =  function(input, cmd)  {
+    currentCmd = cmd;
+    currentInput = input;
+    container.contentWindow.postMessage( input , document.location.origin);
+    return true;
+  };
+
+  var statsConsole = new Cmd({
+    selector: '#querybar',
+    dark_css: '/styles/cmd.css',
+    light_css: '/styles/cmd.css',
+    external_processor: queryProcessor
+  });
+
+  statsConsole.setPrompt('> ');
+
+  window.addEventListener("message", receiveMessage, false);
+
   window.addEventListener('load', function() {
     var deviceType = 'all';
-    var stats = new BrowserStats();
+    stats = new BrowserStats();
 
     stats.load(deviceType, function(data) {
 
