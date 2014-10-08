@@ -14,13 +14,6 @@
 // Color Palette
 @import '_palette';
 
-// Modules
-@import '_modules/_highlight';
-@import '_modules/_articles-section';
-@import '_modules/_guides-section';
-@import '_modules/_page-header';
-@import '_modules/_querybar';
-
 // Components
 @import '_components/_grid';
 @import '_components/_typography';
@@ -29,16 +22,10 @@
 @import '_components/_link';
 @import '_components/_table';
 @import '_components/_media';
-@import '_components/_breadcrumb';
-@import '_components/_subsection-title';
 @import '_components/_icon-circle';
 
 // Themed styles
 @import '_themed';
-
-// Pages
-@import '_pages/_styleguide';
-@import '_pages/_page-resources';
 
 // Make sure this is last to override anything else :)
 @import '_helper';
