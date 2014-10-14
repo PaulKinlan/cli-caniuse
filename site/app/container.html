@@ -3,26 +3,46 @@
 <!-- endbuild -->
 <script>
 var jsrepl = new JSREPL({  
-  input: function() {  },
+  input: function() { return ""; },
   result: function(result) { 
-    window.parent.postMessage(result, document.location.origin);
+    printLn(result);
   },
-  output: function(e) { console.log(e); },
+  output: function(e) { },
   error: function(error) { 
-    window.parent.postMessage(error, document.location.origin);
+    printLn(result);
   }
 });  
 
-jsrepl.loadLanguage('javascript', function () {    
-  console.log("language loaded");
+jsrepl.loadLanguage('javascript', function () {
   jsrepl.eval("importScripts('/scripts/browserstats.js');");
   jsrepl.eval("stats = new BrowserStats();");
   jsrepl.eval("stats.load('all', function() {});");
+  printLines([
+    "Welcome to CLI for caniuse",
+    "--------------------------",
+    "",
+    "> today = stats.getEra([0]) - all features in the current generation",
+    "> previous = stats.getEra([-1]) - all features in the previous generation",
+    "> __.difference(today, previous) - only the new features in the current generation",
+  ]);
 });
 
 var receiveMessage = function(e) {
-  jsrepl.eval(e.data);  
+  if(e.data == 'help') {
+    window.parent.postMessage(result, document.location.origin);
+  }
+  else {
+    jsrepl.eval(e.data);
+  }
 };
 
 window.addEventListener("message", receiveMessage, false);
+
+function printLn(line) {
+  window.parent.postMessage(line + "<br/>", document.location.origin);
+}
+
+function printLines(lines) {
+  lines.forEach(function(line) { printLn(line); });
+}
 </script>
